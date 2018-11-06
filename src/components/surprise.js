@@ -6,10 +6,23 @@ import SurpriseImage from './surprise-image';
 export default class Surprise extends React.Component {
     constructor(props) {
         super(props);
+        
+        this.state = {
+            surprise: false
+        };
+    }
+
+    setSurprise(surprise) {
+        this.setState({
+            surprise
+        });
     }
 
     render() {
-        // Show the button to start with
-        return <SurpriseButton />;
+        if (!this.state.surprise){
+            return <SurpriseButton setSurprise={() => this.setSurprise(true)} />
+        }
+
+        return <SurpriseImage/>;
     }
 }
